@@ -1,0 +1,49 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /players/{pidHash} {
+      allow create, update: if true;
+      allow read: if false;
+    }
+  }
+}
+========================
+
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    /* =========================
+       PLAYERS COLLECTION
+       ========================= */
+    match /players/{pidHash} {
+
+      // Players can CREATE or UPDATE their own record only
+      allow create, update: if
+        request.auth == null &&
+        request.resource.data.pid_hash == pidHash &&
+        request.resource.data.name is string &&
+        request.resource.data.highScore is number &&
+        request.resource.data.banned == false;
+
+      // Nobody can read player data publicly
+      allow read: if false;
+    }
+
+    /* =========================
+       GAME SESSIONS (WRITE ONLY)
+       ========================= */
+    match /sessions/{sessionId} {
+      allow create: if request.auth == null;
+      allow read: if false;
+    }
+
+    /* =========================
+       ADMIN ACCESS (AUTH ONLY)
+       ========================= */
+    match /{document=**} {
+      allow read, write: if request.auth != null;
+    }
+  }
+}

@@ -1,0 +1,34 @@
+The Master Project Prompt (V3.4: Fresh Morning Edition)
+Project Goal: A high-performance, mobile-first web game for Seamex (Aditya Birla Group), themed around a "Seamless" and "Delightful" employee experience.
+
+1. Visuals & Atmosphere:
+
+Theme: "Fresh Good Morning." Use a bright linear-gradient sky (Sky Blue to White).
+
+Flying Illusion: Use three layers of parallax: Far-background subtle dots, mid-ground soft white clouds, and foreground fast-moving blue "wind streaks."
+
+Character: A large (92px) character (AVA) that "bobs" slightly on a sine wave to simulate balancing in flight.
+
+Branding: Powered by Seamex. The logo appears on Login and Game Over screens only.
+
+2. Core Gameplay Logic:
+
+Input: "Hold to Fly, Lift to Die." The game remains in a READY state (no movement, no points) until the first touch.
+
+Ergonomics: Character follows touch with a -75px vertical offset to ensure the player's finger doesn't block the view of the character or incoming viruses.
+
+Difficulty: Speed and spawn rates increase every 100 points, capping at Level 10.
+
+Power-up: Shield (8 seconds). Visualized by a blue pulsing ring and a dedicated HUD countdown timer ("SHIELD: 8.0s").
+
+3. Advanced Features:
+
+Performance: All animations (background, particles, and color shifts) must be rendered directly on the HTML5 Canvas to ensure 60FPS on iOS Safari and prevent "ghosting."
+
+Collision Feedback: When the shield hits a virus, it triggers a "Spark Particle" effect (blue sparks) instead of ending the game.
+
+Leaderboard: Local/Global Top 8 high-score tracking using localStorage.
+
+Sharing: Quirky challenge message: "I dashed past the viruses and scored X! Can you beat my streak?" including the Poornata App link (https://onelink.to/6kpm3g).
+
+Trivia: Random Seamex-specific facts displayed on the Game Over screen, including links to the Seamex story.
