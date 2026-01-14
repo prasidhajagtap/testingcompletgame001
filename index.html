@@ -142,13 +142,6 @@ async function hashPID(pid) {
 }
 
 /* ====== GAME STATE ====== */
-const STATE = {
-    phase: 'MENU', score: 0, highscore: 0, level: 1,
-    shield: 0, user: null, sound: true, shake: 0
-};
-
-// ... (Keep your original audio, player, and canvas variables here)
-
 /* ====== LOGIN & SYNC ====== */
 async function startReady() {
     const nameIn = document.getElementById('inp-name').value.trim();
